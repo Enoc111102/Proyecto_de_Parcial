@@ -1,12 +1,14 @@
 // ProgramaMenu.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
 //
 
+#include <iomanip>
+#include <cmath>
 #include <string>
 #include <iostream>
 #include <cmath>
 #include<cstdlib>
-#include <iomanip>
-#include <cmath>
+#include<vector>
+#include<array>
 using namespace std;
 void pausa();
 
@@ -32,33 +34,35 @@ int main()
 		{
 		case '1':
 			system("cls");
-			cout << "Has elejido Binario-Decimal. \n";
 			{
-				int exp, digito;
-				double binario, decimal;
-				cout << "Introduce el numero binario: ";
-				cin >> binario;
-				exp = 0;
-				decimal = 0;
-				while (((int)(binario / 10)) != 0)
+				cout << "Has elegido Binario-Decimal. \n";
 				{
-					digito = (int)binario % 10;
-					decimal = decimal + digito * pow(2.0, exp);
-					exp++;
-					binario = (int)(binario / 10);
+					int exp, digito;
+					double binario, decimal;
+					cout << "Introduce el numero binario: ";
+					cin >> binario;
+					exp = 0;
+					decimal = 0;
+					while (((int)(binario / 10)) != 0)
+					{
+						digito = (int)binario % 10;
+						decimal = decimal + digito * pow(2.0, exp);
+						exp++;
+						binario = (int)(binario / 10);
+					}
+					decimal = decimal + binario * pow(2.0, exp);
+					cout << endl << "El Decimal es: " << decimal << endl;
 				}
-				decimal = decimal + binario * pow(2.0, exp);
-				cout << endl << "El Decimal es: " << decimal << endl;
+
 			}
 			pausa();
 			break;
 		case '2':
 			system("cls");
-			cout << "Has elejido Decimal-Binario. \n";
 			{
 				int numero, exp, digito;
 				double binario;
-				cout << "Introduce numero: ";
+				cout << "Introduce un numero decimal: ";
 				cin >> numero;
 				exp = 0;
 				binario = 0;
@@ -77,124 +81,175 @@ int main()
 			break;
 		case '3':
 			system("cls");
-			cout << "Has elejido Binario-Octal. \n";
+
+			int cer;
+			int cgrup; string resultado, triada;
+			vector <string> binario;
+			vector <string> resul;
+
+			cout << "Has elegido la opcion de Binario a Octal." << endl;
+			cout << "Recuerda que el sistema octal se basa en grupos de 3 numeros binario, el codigo siempre debe leerse de derecha a izquierda." << endl;
+			cout << "Recuerda que si tu cogigo no completa su grupo de 3, no se borrara el valor del grupo, si no que se agregaran ceros a ese grupo." << endl;
+			cout << "¿Cuantos grupos de 3 digitos tiene tu codigo?: ";
+			cin >> cgrup;
 			{
-#define ARREGLO_MAX 100
-				string a;
-				int bi[ARREGLO_MAX];
-				int i;
-				int num;
-				string res[ARREGLO_MAX];
-				cout << "Cuantos pares de 3 digitos son?:" << endl;
-				cin >> num;
-				for (i = 1; i <= num; i++) {
-					cout << "Ingresa tres digitos de numeros: " << endl;
-					cin >> bi[i - 1];
-				}
-				for (i = 1; i <= num; i++) {
-					switch (bi[i - 1]) {
-					case 000:
-						res[i - 1] = "0";
-						break;
-					case 001:
-						res[i - 1] = "1";
-						break;
-					case 010:
-						res[i - 1] = "2";
-						break;
-					case 011:
-						res[i - 1] = "3";
-						break;
-					case 100:
-						res[i - 1] = "4";
-						break;
-					case 101:
-						res[i - 1] = "5";
-						break;
-					case 110:
-						res[i - 1] = "6";
-						break;
-					case 111:
-						res[i - 1] = "7";
-						break;
+
+				for (int i = 0; i < cgrup; i++) {
+					cout << i + 1 << ": " << "Ingresa 3 digitos de tu codigo: ";
+					cin >> triada;
+					binario.push_back(triada);
+					if (binario[i] == "000") {
+						resul.push_back("0");
 					}
+					if (binario[i] == "001") {
+						resul.push_back("1");
+					}
+					if (binario[i] == "010") {
+						resul.push_back("2");
+					}
+					if (binario[i] == "011") {
+						resul.push_back("3");
+					}
+					if (binario[i] == "100") {
+						resul.push_back("4");
+					}
+					if (binario[i] == "101") {
+						resul.push_back("5");
+					}
+					if (binario[i] == "110") {
+						resul.push_back("6");
+					}
+					if (binario[i] == "111") {
+						resul.push_back("7");
+					}
+					resultado = resultado + resul[i];
 				}
-				for (i = 1; i <= num; i++) {
-					a = a + res[i - 1];
-				}
-				cout << a << endl;
-			}
-			pausa();
-			break;
+				cout << " El codigo Octal es: " << resultado;
+				pausa();
+				break;
 		case '4':
 			system("cls");
-			cout << "Has elejido Binario-Hexadecimal. \n"; {
+			int cer;
+			int par; string resultado, cantgrup;
+			vector <string> binario;
+			vector <string> mundec;
 
-				char numero[9], temp[2];
-				short potencia[9] = { 1,2,4,8,16,32,64,128 };
-				int i, x, total = 0, decimal[9];
-				cout << ("Escriba un numero binario: ");
-				cin >> ("%s", numero);
-				for (i = 0; numero[i] != '\0'; i++);
-				int limite = i;
-				i--;
-				for (x = 0; x < limite; x++, i--) {
-					temp[0] = numero[i];
-					decimal[x] = atoi(temp);
-					decimal[x] *= potencia[x];
-					total += decimal[x];
-				}
-				printf("resultado en decimal: %d", total);
-				printf("\nresultado en hexadecimal: %x", total);
-			}
-			getwchar();
-			return 0;
+			cout << "Has elegido la aopcion de Binario a Deciaml." << endl;
+			cout << "Recuerda que el sistema hexadeciaml funciona con grupos de 4 digitos binario, y siempre se leen de derecha a izquierda." << endl;
+			cout << "Recuerda que tu grupo binario debe cumplir con los 4 elementos." << endl;
+			cout << "Cuantos grupos de 4 digitos tiene tu codigo?: ";
+			cin >> par;
+
+			{
+				{
+					{
+						for (int i = 0; i < par; i++) {
+							cout << i + 1 << ": " << "Ingresa 4 digitos de tu codigo: ";
+							cin >> cantgrup;
+							binario.push_back(cantgrup);
+							if (binario[i] == "0000") {
+								mundec.push_back("0");
+							}
+							if (binario[i] == "0001") {
+								mundec.push_back("1");
+							}
+							if (binario[i] == "0010") {
+								mundec.push_back("2");
+							}
+							if (binario[i] == "0011") {
+								mundec.push_back("3");
+							}
+							if (binario[i] == "0100") {
+								mundec.push_back("4");
+							}
+							if (binario[i] == "0101") {
+								mundec.push_back("5");
+							}
+							if (binario[i] == "0110") {
+								mundec.push_back("6");
+							}
+							if (binario[i] == "0111") {
+								mundec.push_back("7");
+							}
+							if (binario[i] == "1000") {
+								mundec.push_back("8");
+							}
+							if (binario[i] == "1001") {
+								mundec.push_back("9");
+							}
+							if (binario[i] == "1010") {
+								mundec.push_back("A");
+							}
+							if (binario[i] == "1011") {
+								mundec.push_back("B");
+							}
+							if (binario[i] == "1100") {
+								mundec.push_back("C");
+							}
+							if (binario[i] == "1101") {
+								mundec.push_back("D");
+							}
+							if (binario[i] == "1110") {
+								mundec.push_back("E");
+							}
+							if (binario[i] == "1111") {
+								mundec.push_back("F");
+							}
+							resultado = resultado + mundec[i];
+						}
+						cout << " El codigo Hexadecimal es: " << resultado;
+
+					}
+					getwchar();
+					pausa();
+					break;
 
 		case '5':
 			system("cls");
 			cout << "Has elejido Texto-Binario. \n";
 
 			{
-				char texto[300];
-				int contador = 0, num, resul, cerosunos[20], i;
-				int clrscr();
-				printf("introduzca un texto para convertirlo a codigo binario:\n");
-				cin >> (texto);
-				while (contador < strlen(texto))
-				{
-					i = 1;
-					num = texto[contador];
-					while (num > 0)
-					{
-						resul = num % 2;
-						if (resul == 0)
-						{
-							cerosunos[i] = 0;
-							i = i + 1;
-						}
-						else
-						{
-							cerosunos[i] = 1;
-							i = i + 1;
-							num = num - 1;
-						}
-						num = num / 2;
-					}
-					i = i - 1;
-					while (i > 0)
-					{
-						printf("%i", cerosunos[i]);
-						i = i - 1;
-					}
-					printf(" ");
-					contador = contador + 1;
-				}
-				getwchar();
+				cout << "Has elegido Texto-Binario. \n";
 
-				return 0;
-			}
-			pausa();
-			break;
+				{
+					char texto[300];
+					int contador = 0, num, resul, cerosunos[20], i;
+					int clrscr();
+					cout << ("Introduzca un texto para convertirlo a codigo binario, solo puedes ingresar una palabra a la vez, no puede poner espacios:\n");
+					cin >> (texto);
+					while (contador < strlen(texto))
+					{
+						i = 1;
+						num = texto[contador];
+						while (num > 0)
+						{
+							resul = num % 2;
+							if (resul == 0)
+							{
+								cerosunos[i] = 0;
+								i = i + 1;
+							}
+							else
+							{
+								cerosunos[i] = 1;
+								i = i + 1;
+								num = num - 1;
+							}
+							num = num / 2;
+						}
+						i = i - 1;
+						while (i > 0)
+						{
+							printf("%i", cerosunos[i]);
+							i = i - 1;
+						}
+						cout << " ";
+						contador = contador + 1;
+					}
+					getwchar();
+				}
+				pausa();
+				break;
 		case '6':
 			bandera = true;
 			// exit(1);
@@ -204,17 +259,19 @@ int main()
 			cout << "Opcion no valida. \a\n";
 			pausa();
 			break;
+			}
 
+				} while (bandera != true);
+			}
+			}
+			//Desarrollamos la función
+			void pausa();
+			{
+				cout << "Pulsa una tecla para continuar... ";
+				getwchar();
+				getwchar();
+			}
 		}
-
-	} while (bandera != true);
+	}
 	return 0;
-
-}
-//Desarrollamos la función
-void pausa()
-{
-	cout << "Pulsa una tecla para continuar... ";
-	getwchar();
-	getwchar();
 }
