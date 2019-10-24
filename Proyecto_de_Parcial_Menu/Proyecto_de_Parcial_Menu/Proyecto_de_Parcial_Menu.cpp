@@ -9,6 +9,7 @@
 #include<cstdlib>
 #include<vector>
 #include<array>
+#define REDF "\x1b[41m"
 
 using namespace std;
 void pausa();
@@ -21,15 +22,17 @@ int main()
 	{
 		system("cls");
 		cin.clear();
-		cout << "Conversiones" << endl;
-		cout << "-----------" << endl << endl;
+		cout << REDF "------------------------------------------------------------" << endl << endl;
+		cout << "                       Conversiones                         " << endl<<endl;
+		cout << "------------------------------------------------------------" << endl << endl;
 		cout << "\t1 .- Binario-Decimal" << endl;
 		cout << "\t2 .- Decimal-Binario" << endl;
 		cout << "\t3 .- Binario-Octal" << endl;
 		cout << "\t4 .- Binario-Hexadecimal" << endl;
 		cout << "\t5 .- Texto-Binario" << endl;
 		cout << "\t6 .- Salir" << endl;
-		cout << "Elige una opcion: ";
+		cout << "Elige una opcion: "<<endl<<endl<<endl;
+		cout << "Poryecto realizado por; Enoc, Diego";
 		cin >> tecla;
 		switch (tecla)
 		{
